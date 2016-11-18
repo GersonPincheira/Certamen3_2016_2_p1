@@ -1,4 +1,4 @@
-package cl.telematica.android.certamen3;
+package cl.telematica.android.certamen3.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Feed implements Parcelable {
-
+    
     private String title;
     private String link;
     private String author;
@@ -113,5 +113,27 @@ public class Feed implements Parcelable {
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public String Insertar(){
+        return "INSERT INTO " + FeedContract.FeedEntry.TABLE_NAME +" ("
+                + FeedContract.FeedEntry.Title +", "
+                + FeedContract.FeedEntry.Link +", "
+                + FeedContract.FeedEntry.Author +", "
+                + FeedContract.FeedEntry.PublishedDate +", "
+                + FeedContract.FeedEntry.Content +", "
+                + FeedContract.FeedEntry.Image +") VALUES('"+title+"', ' "
+                +link+"', ' "+author+"', ' "+publishedDate+"', ' "+content+"', ' "+image+"');";
+
+    }
+    public String Delete(){
+        return "DELETE FROM "+ FeedContract.FeedEntry.TABLE_NAME+ " WHERE "
+                + FeedContract.FeedEntry.Title+"='"+title +"' AND "
+                + FeedContract.FeedEntry.Link+"='"+link +"' AND "
+                + FeedContract.FeedEntry.Author+"='"+author +"' AND "
+                + FeedContract.FeedEntry.PublishedDate+"='"+publishedDate +"' AND "
+                + FeedContract.FeedEntry.Content+"='"+content +"' AND "
+                + FeedContract.FeedEntry.Image+"='"+image +"';";
+
     }
 }

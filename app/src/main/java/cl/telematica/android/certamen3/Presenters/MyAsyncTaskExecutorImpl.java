@@ -1,26 +1,28 @@
-package cl.telematica.android.certamen3;
+package cl.telematica.android.certamen3.Presenters;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+
+import cl.telematica.android.certamen3.Presenters.Contract.MainPresenters;
+import cl.telematica.android.certamen3.Presenters.Contract.MyAsyncTaskExecutor;
 
 /**
  * Created by franciscocabezas on 11/18/16.
  */
 
-public class MyAsyncTaskExecutor {
+public class MyAsyncTaskExecutorImpl implements MyAsyncTaskExecutor {
 
     private RecyclerView.Adapter mAdapter;
+    private static MyAsyncTaskExecutorImpl instance;
 
-    private static MyAsyncTaskExecutor instance;
-
-    public static MyAsyncTaskExecutor getInstance() {
+    public static MyAsyncTaskExecutorImpl getInstance() {
         if(instance == null) {
-            instance = new MyAsyncTaskExecutor();
+            instance = new MyAsyncTaskExecutorImpl();
         }
         return instance;
     }
 
-    public void executeMyAsynctask(final MainActivity activity, final RecyclerView mRecyclerView) {
+    public void executeMyAsynctask(final MainPresenters mainPresenters, final RecyclerView mRecyclerView) {
         AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
 
             @Override
@@ -38,9 +40,8 @@ public class MyAsyncTaskExecutor {
             protected void onPostExecute(String result) {
                 if(result != null){
                     System.out.println(result);
-
                     //Why god... why
-                    mAdapter = new DataAdapter(activity, activity.getFeeds(result));
+                    mAdapter = new DataAdapter(mainPresenters.getActivity(),mainPresenters.getFeeds(result),mainPresenters.getdb());
                     mRecyclerView.setAdapter(mAdapter);
                 }
             }
