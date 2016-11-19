@@ -11,6 +11,7 @@ public class FeedContract {
     public static abstract class FeedEntry implements BaseColumns {
             public static final String TABLE_NAME ="Feeds";
 
+            public static final String ID ="id";
             public static final String Title= "title";
             public static final String Link = "link";
             public static final String Author = "author";

@@ -92,15 +92,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 if(feed.isFavorite()) {
                     db.execSQL(feed.Insertar());
                     holder.mAddBtn.setText(mContext.getString(R.string.added));
-                    Cursor c = db.rawQuery("SELECT * FROM "+ FeedContract.FeedEntry.TABLE_NAME,null);
-                    if(c.moveToFirst()){
-                        do{
-                            String rol = c.getString(0);
-                            String nombre = c.getString(1);
-                            System.out.println(rol + " "+nombre);
-                        } while (c.moveToNext());
-                    }
-                    c.close();
                 } else {
                     db.execSQL(feed.Delete());
                     holder.mAddBtn.setText(mContext.getString(R.string.like));

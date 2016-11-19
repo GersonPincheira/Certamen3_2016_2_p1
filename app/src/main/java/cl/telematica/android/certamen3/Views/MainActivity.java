@@ -1,5 +1,7 @@
 package cl.telematica.android.certamen3.Views;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cl.telematica.android.certamen3.Models.DataBaseClass;
+import cl.telematica.android.certamen3.Models.FeedContract;
 import cl.telematica.android.certamen3.Presenters.Contract.MainPresenters;
 import cl.telematica.android.certamen3.Presenters.Contract.MyAsyncTaskExecutor;
 import cl.telematica.android.certamen3.Presenters.MainPresenterImpl;
@@ -49,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            /**
+            Intent i = new Intent(this, FavoritoActivity.class );
+            this.startActivity(i); /**
              * You should manage the action to show the favorite items saved by the user
              */
             return true;

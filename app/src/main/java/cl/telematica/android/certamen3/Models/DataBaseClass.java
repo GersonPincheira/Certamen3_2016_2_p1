@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseClass extends SQLiteOpenHelper {
 
     private String sqlString="CREATE TABLE " + FeedContract.FeedEntry.TABLE_NAME +" ("
+            + FeedContract.FeedEntry.ID +" TEXT, "
             + FeedContract.FeedEntry.Title +" TEXT, "
             + FeedContract.FeedEntry.Link +" TEXT, "
             + FeedContract.FeedEntry.Author +" TEXT, "
@@ -18,7 +19,7 @@ public class DataBaseClass extends SQLiteOpenHelper {
             + FeedContract.FeedEntry.Content +" TEXT, "
             + FeedContract.FeedEntry.Image +" TEXT)";
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "FeedBD";
 
     public DataBaseClass(Context cxt){

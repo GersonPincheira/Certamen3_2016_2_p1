@@ -8,7 +8,8 @@ import android.os.Parcelable;
  */
 
 public class Feed implements Parcelable {
-    
+
+    private String ID;
     private String title;
     private String link;
     private String author;
@@ -22,6 +23,7 @@ public class Feed implements Parcelable {
     }
 
     protected Feed(Parcel in) {
+        ID = in.readString();
         title = in.readString();
         link = in.readString();
         author = in.readString();
@@ -42,6 +44,12 @@ public class Feed implements Parcelable {
             return new Feed[size];
         }
     };
+
+    public String getID(){ return ID; }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getTitle() {
         return title;
@@ -98,6 +106,7 @@ public class Feed implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(ID);
         parcel.writeString(title);
         parcel.writeString(link);
         parcel.writeString(author);
@@ -117,23 +126,19 @@ public class Feed implements Parcelable {
 
     public String Insertar(){
         return "INSERT INTO " + FeedContract.FeedEntry.TABLE_NAME +" ("
+                + FeedContract.FeedEntry.ID +", "
                 + FeedContract.FeedEntry.Title +", "
                 + FeedContract.FeedEntry.Link +", "
                 + FeedContract.FeedEntry.Author +", "
                 + FeedContract.FeedEntry.PublishedDate +", "
                 + FeedContract.FeedEntry.Content +", "
-                + FeedContract.FeedEntry.Image +") VALUES('"+title+"', ' "
+                + FeedContract.FeedEntry.Image +") VALUES('"+ID+"', ' "+title+"', ' "
                 +link+"', ' "+author+"', ' "+publishedDate+"', ' "+content+"', ' "+image+"');";
 
     }
     public String Delete(){
         return "DELETE FROM "+ FeedContract.FeedEntry.TABLE_NAME+ " WHERE "
-                + FeedContract.FeedEntry.Title+"='"+title +"' AND "
-                + FeedContract.FeedEntry.Link+"='"+link +"' AND "
-                + FeedContract.FeedEntry.Author+"='"+author +"' AND "
-                + FeedContract.FeedEntry.PublishedDate+"='"+publishedDate +"' AND "
-                + FeedContract.FeedEntry.Content+"='"+content +"' AND "
-                + FeedContract.FeedEntry.Image+"='"+image +"';";
+                + FeedContract.FeedEntry.ID+"='"+ID+"';";
 
     }
 }

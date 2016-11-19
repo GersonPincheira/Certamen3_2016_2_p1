@@ -19,6 +19,8 @@ public interface MainPresenters {
 
     SQLiteDatabase getdb();
 
+    void Adapter(Activity ad);
+
 
 
 
